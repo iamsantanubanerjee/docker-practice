@@ -1,0 +1,21 @@
+services:
+  flask:
+    build:
+      context: ./flask
+    ports:
+      - "5001:5001"
+    networks:
+      - app-network
+
+  streamlit:
+    build:
+      context: ./streamlit
+    ports:
+      - "8501:8501"
+    depends_on:
+      - flask
+    networks:
+      - app-network
+
+networks:
+  app-network:
